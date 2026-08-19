@@ -1,0 +1,29 @@
+-- criando Banco de Dados
+create database loja_2c;	
+-- seleciona banco e dados
+use loja_2c;
+  -- cria tabela
+  create table if not exists cliente (
+  id_cliente int primary key auto_increment,
+  nome varchar(50) not null,
+  cpf varchar (11)
+  );
+  -- ver tabela
+  desc cliente;
+create table if not exists produto (
+id_produto int primary key auto_increment,
+valor decimal (7,2) not null,
+nome varchar(30),
+categoria enum('alimento', 'limpeza')
+);
+desc produto;
+create table if not exists pedido (
+id int primary key auto_increment,
+quantidade int,
+data_ datetime,
+id_produto int,
+id_cliente int,
+foreign key (id_produto) references produto(id_produto),
+foreign key (id_cliente) references cliente(id_cliente)
+);
+desc pedido;
